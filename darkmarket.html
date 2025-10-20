@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Dark Digital Shop - Produits Numériques</title>
+    <style>
+        /* ===== VARIABLES CSS ===== */
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(20, 20, 30, 0.8);
+            --neon-purple: #a855f7;
+            --neon-green: #22ff66;
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff006e;
+            --text-light: #e0e0e0;
+            --text-dim: #a0a0a0;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== FOND ANIMÉ (Grille) ===== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* ===== PARTICULES ===== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--neon-purple);
+            box-shadow: 0 5px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .cart-badge {
+            background: var(--neon-pink);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s ease-in-out infinite;
+        }
+
+        @keyframes textShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(168, 85, 247, 1);
+        }
+
+        /* ===== BOUTIQUE ===== */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-green), var(--neon-blue));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.5);
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-icon img {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(0 0 10px var(--neon-purple));
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--neon-purple);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== MODAL DE SÉLECTION ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 2px solid var(--neon-purple);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--neon-pink);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .pack-option {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--neon-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pack-option:hover {
+            border-color: var(--neon-green);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(34, 255, 102, 0.3);
+        }
+
+        .pack-option.selected {
+            border-color: var(--neon-green);
+            background: rgba(34, 255, 102, 0.1);
+            box-shadow: 0 0 30px rgba(34, 255, 102, 0.5);
+        }
+
+        .quantity-selector {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--neon-purple);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .qty-btn {
+            background: var(--neon-purple);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        .qty-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            font-weight: 900;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 0 0 20px rgba(34, 255, 102, 0.5);
+        }
+
+        /* ===== PANIER ===== */
+        .cart-items {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .remove-btn {
+            background: var(--neon-pink);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .remove-btn:hover {
+            box-shadow: 0 0 20px var(--neon-pink);
+            transform: scale(1.1);
+        }
+
+        .cart-total {
+            font-size: 2rem;
+            color: var(--neon-green);
+            text-align: right;
+            margin-top: 2rem;
+            font-weight: 900;
+        }
+
+        /* ===== PAIEMENT ===== */
+        .payment-methods {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-purple);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .payment-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .payment-option.selected {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 30px rgba(34, 255, 102, 0.6);
+        }
+
+        .pay-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .payment-form {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neon-green);
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--neon-purple);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(34, 255, 102, 0.3);
+        }
+
+        .crypto-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .crypto-box code {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            word-break: break-all;
+        }
+
+        .crypto-box button {
+            background: var(--neon-green);
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: #000;
+            transition: 0.3s;
+        }
+
+        .crypto-box button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* ===== LOADING & SUCCESS ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(168, 85, 247, 0.3);
+            border-top: 5px solid var(--neon-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            text-align: center;
+            animation: successPop 0.6s ease-out;
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 30px var(--neon-green);
+        }
+
+        /* ===== CONFIRMATION ===== */
+        .confirmation-box {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 50px rgba(34, 255, 102, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(10, 10, 15, 0.95);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid var(--neon-purple);
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            .shop-grid { grid-template-columns: 1fr; }
+            .payment-methods { flex-direction: column; align-items: center; }
+            .modal-content { padding: 2rem; }
+            .quantity-controls { gap: 1rem; }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fond animé -->
+    <div class="animated-bg"></div>
+    
+    <!-- Particules -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Overlay de chargement -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Modal de sélection -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">⚡ DARK DIGITAL SHOP</div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#shop">Boutique</a></li>
+                <li><a href="#cart">Panier<span class="cart-badge" id="cartBadge">0</span></a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECTION HERO -->
+    <section class="hero" id="home">
+        <h1>⚡ Bienvenue sur Dark Digital Shop ⚡</h1>
+        <p>Vos produits numériques au meilleur prix</p>
+        <button class="cta-btn" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">
+            Découvrir la boutique
+        </button>
+    </section>
+
+    <!-- SECTION BOUTIQUE -->
+    <section id="shop">
+        <h2>🛒 Notre Boutique</h2>
+        <div class="shop-grid">
+            <div class="product-card" onclick="openProductModal('discord')">
+                <div class="product-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" />
+                </div>
+                <div class="product-name">Discord Nitro</div>
+                <div class="product-price">À partir de 3.99€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('spotify')">
+                <div class="product-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111624.png" alt="Spotify" />
+                </div>
+                <div class="product-name">Spotify Premium</div>
+                <div class="product-price">À partir de 2.99€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('netflix')">
+                <div class="product-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732228.png" alt="Netflix" />
+                </div>
+                <div class="product-name">Netflix Premium</div>
+                <div class="product-price">À partir de 4.99€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('robux')">
+                <div class="product-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/873/873107.png" alt="Robux" />
+                </div>
+                <div class="product-name">Roblox Robux</div>
+                <div class="product-price">À partir de 2.99€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('crunchyroll')">
+                <div class="product-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968757.png" alt="Crunchyroll" />
+                </div>
+                <div class="product-name">Crunchyroll Premium</div>
+                <div class="product-price">À partir de 2.49€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('youtube')">
+                <div class="product-icon">▶️</div>
+                <div class="product-name">YouTube Premium</div>
+                <div class="product-price">À partir de 3.49€</div>
+                <p style="color: var(--text-dim); margin-top: 1rem;">Cliquez pour choisir votre pack</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PANIER -->
+    <section id="cart">
+        <h2>🛒 Votre Panier</h2>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: var(--text-dim);">Votre panier est vide</p>
+        </div>
+        <div class="cart-total" id="cartTotal">Total: 0.00€</div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="cta-btn" id="checkoutBtn" onclick="showCheckout()" style="display: none;">
+                Procéder au paiement
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION PAIEMENT -->
+    <section id="checkout" class="hidden">
+        <h2>💳 Paiement</h2>
+
+        <div class="payment-methods">
+            <div class="payment-option selected" onclick="selectPayment(this, 'card')">
+                <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Carte Bancaire" class="pay-icon">
+                <p>Carte Bancaire</p>
+            </div>
+            <div class="payment-option" onclick="selectPayment(this, 'paypal')">
+                <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="PayPal" class="pay-icon">
+                <p>PayPal</p>
+            </div>
+            <div class="payment-option" onclick="selectPayment(this, 'crypto')">
+                <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="Crypto" class="pay-icon">
+                <p>Crypto</p>
+            </div>
+        </div>
+
+        <div class="payment-form">
+            <div class="form-group">
+                <label for="fullName">Nom complet *</label>
+                <input type="text" id="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Adresse (facultatif)</label>
+                <input type="text" id="address">
+            </div>
+
+            <div id="extra-fields">
+                <!-- Champs dynamiques selon le paiement -->
+                <div class="form-group">
+                    <label>Numéro de carte *</label>
+                    <input type="text" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-group">
+                    <label>Date d'expiration *</label>
+                    <input type="text" maxlength="5" placeholder="MM/AA" required>
+                </div>
+                <div class="form-group">
+                    <label>CVC *</label>
+                    <input type="text" maxlength="3" placeholder="123" required>
+                </div>
+            </div>
+
+            <button class="cta-btn" style="width: 100%;" onclick="processPayment()">
+                Valider la commande
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION CONFIRMATION -->
+    <section id="confirmation" class="hidden">
+        <h2>✅ Commande Confirmée</h2>
+        <div class="confirmation-box" id="confirmationDetails"></div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="cta-btn" onclick="returnToShop()">Retour à la boutique</button>
+        </div>
+    </section>
+
+    <!-- SECTION CONTACT -->
+    <section id="contact">
+        <h2>📧 Contact</h2>
+        <div style="text-align: center; font-size: 1.5rem; color: var(--text-dim);">
+            <p>💬 Discord: DarkShop#0001</p>
+            <p>📧 Email: contact@darkdigitalshop.com</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Copyright © 2025 Dark Digital Shop</p>
+        <div class="footer-links">
+            <a href="#">Mentions légales</a>
+            <a href="#">Conditions d'utilisation</a>
+            <a href="#">Politique de confidentialité</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== DONNÉES DES PRODUITS =====
+        const products = {
+            discord: {
+                name: 'Discord Nitro',
+                icon: '💬',
+                type: 'quantity',
+                basePrice: 3.99,
+                description: 'Choisissez la quantité de Nitro'
+            },
+            spotify: {
+                name: 'Spotify Premium',
+                icon: '🎵',
+                type: 'packs',
+                packs: [
+                    { name: '1 Mois', price: 2.99 },
+                    { name: '3 Mois', price: 7.99 },
+                    { name: '6 Mois', price: 14.99 },
+                    { name: '12 Mois', price: 24.99 }
+                ]
+            },
+            netflix: {
+                name: 'Netflix Premium',
+                icon: '🎬',
+                type: 'packs',
+                packs: [
+                    { name: '1 Mois', price: 4.99 },
+                    { name: '3 Mois', price: 12.99 },
+                    { name: '6 Mois', price: 22.99 },
+                    { name: '12 Mois', price: 39.99 }
+                ]
+            },
+            robux: {
+                name: 'Roblox Robux',
+                icon: '🎮',
+                type: 'packs',
+                packs: [
+                    { name: '400 Robux', price: 2.99 },
+                    { name: '800 Robux', price: 5.49 },
+                    { name: '1700 Robux', price: 9.99 },
+                    { name: '4500 Robux', price: 24.99 },
+                    { name: '10000 Robux', price: 49.99 },
+                    { name: '22500 Robux', price: 99.99 },
+                    { name: '50000 Robux', price: 199.99 }
+                ]
+            },
+            crunchyroll: {
+                name: 'Crunchyroll Premium',
+                icon: '📺',
+                type: 'packs',
+                packs: [
+                    { name: '1 Mois', price: 2.49 },
+                    { name: '3 Mois', price: 6.49 },
+                    { name: '6 Mois', price: 11.99 },
+                    { name: '12 Mois', price: 19.99 }
+                ]
+            },
+            youtube: {
+                name: 'YouTube Premium',
+                icon: '▶️',
+                type: 'packs',
+                packs: [
+                    { name: '1 Mois', price: 3.49 },
+                    { name: '3 Mois', price: 8.99 },
+                    { name: '6 Mois', price: 15.99 },
+                    { name: '12 Mois', price: 27.99 }
+                ]
+            }
+        };
+
+        // ===== VARIABLES GLOBALES =====
+        let cart = [];
+        let currentProduct = null;
+        let selectedPack = null;
+        let quantity = 1;
+        let currentPaymentMethod = 'card';
+
+        // ===== OUVRIR LE MODAL PRODUIT =====
+        function openProductModal(productId) {
+            currentProduct = products[productId];
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('modalContent');
+
+            if (currentProduct.type === 'packs') {
+                let packsHtml = `
+                    <h2 style="color: var(--neon-green); margin-bottom: 2rem;">
+                        ${currentProduct.icon} ${currentProduct.name}
+                    </h2>
+                    <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">
+                        Sélectionnez votre pack
+                    </p>
+                `;
+
+                currentProduct.packs.forEach((pack, index) => {
+                    packsHtml += `
+                        <div class="pack-option" onclick="selectPack(${index})">
+                            <div>
+                                <strong style="color: var(--neon-green); font-size: 1.2rem;">${pack.name}</strong>
+                            </div>
+                            <div>
+                                <strong style="color: var(--neon-purple); font-size: 1.5rem;">${pack.price}€</strong>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                packsHtml += `
+                    <button class="cta-btn" style="width: 100%; margin-top: 2rem;" onclick="addPackToCart()">
+                        Ajouter au panier
+                    </button>
+                `;
+
+                content.innerHTML = packsHtml;
+            } else {
+                content.innerHTML = `
+                    <h2 style="color: var(--neon-green); margin-bottom: 2rem;">
+                        ${currentProduct.icon} ${currentProduct.name}
+                    </h2>
+                    <div class="quantity-selector">
+                        <p style="text-align: center; color: var(--text-dim); margin-bottom: 1rem;">
+                            ${currentProduct.description}
+                        </p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                            <div class="qty-display" id="qtyDisplay">1</div>
+                            <button class="qty-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                        <div class="total-price" id="modalTotalPrice">
+                            ${currentProduct.basePrice.toFixed(2)}€
+                        </div>
+                    </div>
+                    <button class="cta-btn" style="width: 100%;" onclick="addQuantityToCart()">
+                        Ajouter au panier
+                    </button>
+                `;
+            }
+
+            modal.style.display = 'flex';
+            selectedPack = null;
+            quantity = 1;
+        }
+
+        // ===== FERMER LE MODAL =====
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // ===== SÉLECTIONNER UN PACK =====
+        function selectPack(index) {
+            selectedPack = index;
+            document.querySelectorAll('.pack-option').forEach((el, i) => {
+                if (i === index) {
+                    el.classList.add('selected');
+                } else {
+                    el.classList.remove('selected');
+                }
+            });
+        }
+
+        // ===== AUGMENTER LA QUANTITÉ =====
+        function increaseQuantity() {
+            quantity++;
+            updateQuantityDisplay();
+        }
+
+        // ===== DIMINUER LA QUANTITÉ =====
+        function decreaseQuantity() {
+            if (quantity > 1) {
+                quantity--;
+                updateQuantityDisplay();
+            }
+        }
+
+        // ===== METTRE À JOUR L'AFFICHAGE DE LA QUANTITÉ =====
+        function updateQuantityDisplay() {
+            document.getElementById('qtyDisplay').textContent = quantity;
+            const totalPrice = (currentProduct.basePrice * quantity).toFixed(2);
+            document.getElementById('modalTotalPrice').textContent = totalPrice + '€';
+        }
+
+        // ===== AJOUTER UN PACK AU PANIER =====
+        function addPackToCart() {
+            if (selectedPack === null) {
+                alert('Veuillez sélectionner un pack');
+                return;
+            }
+
+            const pack = currentProduct.packs[selectedPack];
+            cart.push({
+                name: `${currentProduct.name} - ${pack.name}`,
+                price: pack.price
+            });
+
+            saveCart();
+            closeModal();
+            showAddedFeedback();
+        }
+
+        // ===== AJOUTER UNE QUANTITÉ AU PANIER =====
+        function addQuantityToCart() {
+            const totalPrice = currentProduct.basePrice * quantity;
+            cart.push({
+                name: `${currentProduct.name} x${quantity}`,
+                price: totalPrice
+            });
+
+            saveCart();
+            closeModal();
+            showAddedFeedback();
+        }
+
+        // ===== FEEDBACK VISUEL AJOUT =====
+        function showAddedFeedback() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.innerHTML = `
+                <div class="success-message">
+                    <div class="success-icon">✅</div>
+                    <h2 style="color: var(--neon-green); margin-top: 1rem;">Ajouté au panier !</h2>
+                </div>
+            `;
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1500);
+        }
+
+        // ===== SAUVEGARDER LE PANIER =====
+        function saveCart() {
+            updateCart();
+        }
+
+        // ===== METTRE À JOUR LE PANIER =====
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            cartBadge.textContent = cart.length;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: var(--text-dim);">Votre panier est vide</p>';
+                checkoutBtn.style.display = 'none';
+                cartTotal.textContent = 'Total: 0.00€';
+                return;
+            }
+
+            checkoutBtn.style.display = 'inline-block';
+
+            let total = 0;
+            let html = '';
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <p style="color: var(--neon-purple);">${item.price.toFixed(2)}€</p>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Supprimer</button>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = html;
+            cartTotal.textContent = `Total: ${total.toFixed(2)}€`;
+        }
+
+        // ===== SUPPRIMER DU PANIER =====
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
+        // ===== AFFICHER LE CHECKOUT =====
+        function showCheckout() {
+            if (cart.length === 0) return;
+            document.getElementById('checkout').classList.remove('hidden');
+            document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== SÉLECTION MÉTHODE DE PAIEMENT =====
+        function selectPayment(element, method) {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            currentPaymentMethod = method;
+
+            const extraFields = document.getElementById('extra-fields');
+            extraFields.innerHTML = '';
+
+            if (method === 'card') {
+                extraFields.innerHTML = `
+                    <div class="form-group">
+                        <label>Numéro de carte *</label>
+                        <input type="text" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date d'expiration *</label>
+                        <input type="text" maxlength="5" placeholder="MM/AA" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVC *</label>
+                        <input type="text" maxlength="3" placeholder="123" required>
+                    </div>
+                `;
+            } else if (method === 'paypal') {
+                extraFields.innerHTML = `
+                    <div class="form-group">
+                        <label>Adresse PayPal *</label>
+                        <input type="email" placeholder="votre@email.com" required>
+                    </div>
+                    <p class="note">Un e-mail de vérification vous sera envoyé avant la validation du paiement.</p>
+                `;
+            } else if (method === 'crypto') {
+                extraFields.innerHTML = `
+                    <p class="note">Veuillez envoyer le montant à l'adresse suivante :</p>
+                    <div class="crypto-box">
+                        <code id="wallet">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                        <button onclick="copyWallet()">Copier l'adresse</button>
+                    </div>
+                `;
+            }
+        }
+
+        // ===== COPIER L'ADRESSE CRYPTO =====
+        function copyWallet() {
+            const wallet = document.getElementById('wallet').textContent;
+            navigator.clipboard.writeText(wallet).then(() => {
+                alert("✅ Adresse crypto copiée dans le presse-papier !");
+            }).catch(() => {
+                alert("⚠️ Impossible de copier l'adresse");
+            });
+        }
+
+        // ===== TRAITEMENT DU PAIEMENT =====
+        function processPayment() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!fullName || !email) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+
+            // Validation email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Veuillez entrer une adresse email valide');
+                return;
+            }
+
+            // Validation selon le mode de paiement
+            if (currentPaymentMethod === 'card') {
+                const inputs = document.querySelectorAll('#extra-fields input');
+                const cardNum = inputs[0]?.value.replace(/\s+/g, '') || '';
+                const exp = inputs[1]?.value || '';
+                const cvc = inputs[2]?.value || '';
+
+                if (cardNum.length < 12 || !/^\d{12,19}$/.test(cardNum)) {
+                    alert('Numéro de carte invalide');
+                    return;
+                }
+                if (!/^\d{2}\/\d{2}$/.test(exp)) {
+                    alert('Date d\'expiration invalide (MM/AA)');
+                    return;
+                }
+                if (!/^\d{3,4}$/.test(cvc)) {
+                    alert('CVC invalide');
+                    return;
+                }
+            } else if (currentPaymentMethod === 'paypal') {
+                const paypalEmail = document.querySelector('#extra-fields input[type="email"]')?.value || '';
+                if (!paypalEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(paypalEmail)) {
+                    alert('Adresse PayPal invalide');
+                    return;
+                }
+            }
+
+            // Délai selon la méthode
+            const delays = { crypto: 10000, paypal: 5000, card: 6000 };
+            const delay = delays[currentPaymentMethod] || 6000;
+
+            // Afficher le chargement
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+            overlay.innerHTML = `
+                <div style="text-align:center; max-width:90%; padding:20px;">
+                    <div class="loading-spinner" style="margin:0 auto 20px;"></div>
+                    <h3 style="color:var(--neon-green); margin-bottom:10px;">Traitement du paiement...</h3>
+                    <p style="color:var(--text-dim);">Méthode : ${formatMethodName(currentPaymentMethod)} — ${Math.round(delay/1000)}s environ</p>
+                </div>
+            `;
+
+            // Simuler le traitement
+            setTimeout(() => {
+                const txId = generateTxId(currentPaymentMethod);
+
+                overlay.innerHTML = `
+                    <div class="success-message">
+                        <div class="success-icon">✅</div>
+                        <h2 style="color: var(--neon-green); margin-top: 1rem;">Paiement confirmé !</h2>
+                        <p style="color: var(--text-light); margin-top: 1rem;">Méthode : <strong>${formatMethodName(currentPaymentMethod)}</strong></p>
+                        <p style="color: var(--text-dim); margin-top: 0.5rem;">Référence : <strong>${txId}</strong></p>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    showConfirmation(fullName, email, currentPaymentMethod, txId);
+                }, 1400);
+            }, delay);
+        }
+
+        // ===== FORMATER LE NOM DE LA MÉTHODE =====
+        function formatMethodName(method) {
+            if (method === 'card') return 'Carte Bancaire';
+            if (method === 'paypal') return 'PayPal';
+            if (method === 'crypto') return 'Crypto (BTC)';
+            return method;
+        }
+
+        // ===== GÉNÉRER UN ID DE TRANSACTION =====
+        function generateTxId(method) {
+            const d = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+            const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+            return `${method.toUpperCase()}-${date}-${rand}`;
+        }
+
+        // ===== AFFICHER LA CONFIRMATION =====
+        function showConfirmation(name, email, method, txId) {
+            const confirmation = document.getElementById('confirmation');
+            const details = document.getElementById('confirmationDetails');
+
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let itemsList = cart.length ? cart.map(item => `<li>${escapeHtml(item.name)} - ${item.price.toFixed(2)}€</li>`).join('') : '<li>Aucun produit</li>';
+
+            const date = new Date().toLocaleDateString('fr-FR', {
+                year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            details.innerHTML = `
+                <h3 style="color: var(--neon-green); margin-bottom: 1rem;">Récapitulatif de votre commande</h3>
+                <p><strong>Client :</strong> ${escapeHtml(name)}</p>
+                <p><strong>Email :</strong> ${escapeHtml(email)}</p>
+                <p><strong>Date :</strong> ${date}</p>
+                <p><strong>Moyen de paiement :</strong> ${formatMethodName(method)}</p>
+                ${txId ? `<p><strong>Référence transaction :</strong> ${txId}</p>` : ''}
+                <h4 style="color: var(--neon-purple); margin-top: 1.5rem; margin-bottom: 1rem;">Produits commandés :</h4>
+                <ul style="list-style: none; padding: 0;">${itemsList}</ul>
+                <h3 style="color: var(--neon-green); margin-top: 2rem;">Total payé : ${total.toFixed(2)}€</h3>
+                <p style="margin-top: 2rem; color: var(--text-dim);">Un email de confirmation vous a été envoyé à ${escapeHtml(email)}</p>
+            `;
+
+            document.getElementById('checkout').classList.add('hidden');
+            confirmation.classList.remove('hidden');
+            confirmation.scrollIntoView({ behavior: 'smooth' });
+
+            cart = [];
+            saveCart();
+        }
+
+        // ===== ÉCHAPPER LE HTML =====
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // ===== RETOUR À LA BOUTIQUE =====
+        function returnToShop() {
+            document.getElementById('confirmation').classList.add('hidden');
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== GÉNÉRATION DES PARTICULES =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // ===== FERMER LE MODAL AU CLIC EXTÉRIEUR =====
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ===== INITIALISATION =====
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            updateCart();
+        });
+
+        // ===== ANIMATION D'ENTRÉE =====
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
